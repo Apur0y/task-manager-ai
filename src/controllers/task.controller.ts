@@ -18,7 +18,7 @@ import {
 // Create a new task
 export const createNewTask = async (req: Request, res: Response) => {
   try {
-    const { title, description, category, date, priority } = req.body;
+    const { title, description, category, date, priority,resources } = req.body;
 
     if (!title || !category) {
       return res.status(400).json({
@@ -32,6 +32,7 @@ export const createNewTask = async (req: Request, res: Response) => {
       category,
       date,
       priority,
+      resources
     });
 
     res.status(201).json({

@@ -38,6 +38,15 @@ const taskSchema = new mongoose.Schema(
       type: Date,
       default: null,
     },
+    resources: {
+  type: [
+    new mongoose.Schema({
+      label: { type: String, required: true },
+      url: { type: String, required: true },
+    })
+  ],
+  default: [],
+},
     isCarriedOver: {
       type: Boolean,
       default: false,

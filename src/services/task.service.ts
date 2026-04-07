@@ -6,6 +6,7 @@ interface TaskInput {
   category: string;
   date?: Date;
   priority?: string;
+  resources?: Array<{ label: string; url: string }>;
 }
 
 interface TaskUpdate {
@@ -15,6 +16,7 @@ interface TaskUpdate {
   date?: Date;
   status?: string;
   priority?: string;
+  resources?: Array<{ label: string; url: string }>;
 }
 
 // Create a new task
@@ -29,6 +31,7 @@ export const createTask = async (input: TaskInput) => {
     date: taskDate,
     priority: input.priority || "medium",
     status: "pending",
+    resources: input.resources || []
   });
 
   return await task.save();
@@ -121,7 +124,14 @@ export const markTaskAsComplete = async (id: string) => {
 
 // Delete a task
 export const deleteTask = async (id: string) => {
-  return await Task.findByIdAndDelete(id);
+   return await Task.findByIdAndUpdate(
+    id,
+    {
+      status: "deleted",
+      completedAt: new Date(),
+    },
+    { new: true }
+  );
 };
 
 // Complete all tasks for a date
