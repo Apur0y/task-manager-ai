@@ -12,6 +12,7 @@ import {
   getLast90DaysController,
   getCategoryStatsController,
   getProgressByCategoryController,
+  getAllTask,
 } from "../controllers/task.controller";
 
 const taskRouter = Router();
@@ -20,6 +21,7 @@ const taskRouter = Router();
 taskRouter.post("/", createNewTask);
 
 // Get tasks
+taskRouter.get("/", getAllTask);
 taskRouter.get("/today", getTodayTasksController);
 taskRouter.get("/date/:date", getTasksByDateController);
 taskRouter.get("/", getTasksByDateRangeController);

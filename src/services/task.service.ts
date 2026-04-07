@@ -47,6 +47,11 @@ export const getTodayTasks = async () => {
   }).sort({ priority: -1, createdAt: 1 });
 };
 
+export const getAllTasks=async()=>{
+  return Task.find();
+}
+
+
 // Get tasks for a specific date
 export const getTasksByDate = async (date: Date) => {
   const startDate = new Date(date);

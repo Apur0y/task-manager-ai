@@ -12,6 +12,7 @@ import {
   getLast90DaysTasks,
   markTaskAsComplete,
   getProgressByCategory,
+  getAllTasks,
 } from "../services/task.service";
 
 // Create a new task
@@ -61,6 +62,19 @@ export const getTodayTasksController = async (_req: Request, res: Response) => {
     res.status(500).json({ error: String(err) });
   }
 };
+
+export const getAllTask=async(req: Request, res: Response)=>{
+  try {
+    const tasks=await getAllTasks();
+    res.json({
+       success: true,
+       tasks
+
+    })
+  } catch (error) {
+    
+  }
+}
 
 // Get tasks for a specific date
 export const getTasksByDateController = async (req: Request, res: Response) => {
