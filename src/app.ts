@@ -15,5 +15,8 @@ app.use("/api/tasks", taskRoutes);
 app.get("/api/health", (req, res) => {
   res.json({ status: "Server is running", timestamp: new Date() });
 });
+app.get("/", (req, res) => {
+  res.json({ status: "Server is running", timestamp: new Date() });
+});
 
 export default app;
